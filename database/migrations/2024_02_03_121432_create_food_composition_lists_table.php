@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('food_composition_lists', function (Blueprint $table) {
-            $table->comment('食品構成表');
+            $table->comment('食品成分表');
             $table->id();
             $table->string('food_name')->comment('食品名');
             $table->decimal('protein', $precision = 6, $scale = 1)->comment('プロテイン');

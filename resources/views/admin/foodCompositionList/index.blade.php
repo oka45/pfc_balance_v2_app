@@ -1,14 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('食品構成表') }}
+            {{ __('食品成分表') }}
         </h2>
     </x-slot>
     <div class="container" style="color: white;">
-        <form action="{{ route('admin.food_composition_list.create') }}" method="post" enctype="multipart/form-data">
+        @if (session('food_composition_list.message'))
+            <p style="color: green;">{{ session('food_composition_list.message') }}</p>
+        @endif
+        @error('food_composition_list_file')
+            <p style="color: red;">{{ $message }}</p>
+        @enderror
+        <form action="{{ route('admin.food_composition_list.import') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="file" id="food_composition_list_file" name="food_composition_list_file" class="">
-            <button type="submit">食品構成表のインポート</button>
+            <button type="submit">食品成分表のインポート</button>
         </form>
         <table class="container text-center"> 
             <thead>

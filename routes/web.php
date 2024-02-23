@@ -34,9 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', User\IndexController::class)->name('admin.user.index');
     Route::delete('/user/{id}', User\DeleteController::class)->name('admin.user.delete');
 
-    // 食品構成表の表示とインポート
+    // 食品成分表の表示とインポート
     Route::get('/food_composition_list', FoodCompositionList\IndexController::class)->name('admin.food_composition_list.index');
-    Route::post('/food_composition_list', FoodCompositionList\CreateController::class)->name('admin.food_composition_list.create');
+    Route::post('/food_composition_list', FoodCompositionList\ImportController::class)->name('admin.food_composition_list.import');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
