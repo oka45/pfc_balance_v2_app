@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\User;
+use App\Http\Controllers\Admin\FoodCompositionList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// あとでコメントアウト予定メール検証をする予定がないため。テストユーザーはseederで検証済みになっている。
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -31,6 +33,10 @@ Route::middleware('auth')->group(function () {
     // ユーザー管理画面
     Route::get('/user', User\IndexController::class)->name('admin.user.index');
     Route::delete('/user/{id}', User\DeleteController::class)->name('admin.user.delete');
+
+    // 食品成分表の表示とインポート
+    Route::get('/food_composition_list', FoodCompositionList\IndexController::class)->name('admin.food_composition_list.index');
+    Route::post('/food_composition_list', FoodCompositionList\ImportController::class)->name('admin.food_composition_list.import');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
