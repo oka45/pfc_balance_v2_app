@@ -13,8 +13,7 @@ class FoodCompositionListService
         FoodCompositionList::query()->delete();
 
         $save_data_list = $this->convert($lists);
-        // インポートされた新しい食品成分表をDBに保存
-        // 12行目から食品の成分がはじまる
+        // 食品成分表を保存
         foreach ($save_data_list as $index => $save_data) {
             $food_composition_list = new FoodCompositionList();
             $food_composition_list->id = $index + 1;
